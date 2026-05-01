@@ -6,7 +6,7 @@ from .models import Product
 
 def home(request):
     products = Product.objects.select_related('owner').prefetch_related('categories').all()
-    return render(request, 'marketplace/home.html', {'products': products})
+    return render(request, 'store/home.html', {'products': products})
 
 
 def register(request):
@@ -19,7 +19,7 @@ def register(request):
     else:
         form = RegisterForm()
 
-    return render(request, 'marketplace/register.html', {'form': form})
+    return render(request, 'store/register.html', {'form': form})
 
 
 def login_view(request):
@@ -33,7 +33,7 @@ def login_view(request):
             login(request, user)
             return redirect('home')
 
-    return render(request, 'marketplace/login.html')
+    return render(request, 'store/login.html')
 
 
 def logout_view(request):
